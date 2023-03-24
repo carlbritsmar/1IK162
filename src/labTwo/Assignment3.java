@@ -7,14 +7,18 @@ public class Assignment3{
         Scanner input = new Scanner(System.in);
         System.out.print("Enter an sentence: ");
         String sentence = input.nextLine();
+        String[] words = sentence.toLowerCase().split(" ");
 
-        String[] words = sentence.split(" ");
+        Queue<String> readWords = new LinkedList<>();
+        Collections.addAll(readWords, words);
 
-        Queue<String> readWords = new PriorityQueue<>(String::compareToIgnoreCase);
-        for (String word : words) {
-            readWords.add(word);
+        List<String> arraylistofQueue = new ArrayList<>(readWords);
+        Collections.sort(arraylistofQueue);
+
+        for (String word : arraylistofQueue) {
+            System.out.println(word);
         }
-        System.out.print(readWords);
+
 
     }
 }

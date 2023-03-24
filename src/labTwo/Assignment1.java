@@ -1,16 +1,19 @@
 package labTwo;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Iterator;
 
-public class mainPlayers {
+public class Assignment1 {
     public static void main(String[] args) {
 
 
         Scanner sc = new Scanner(System.in);
-        Scanner switchCase = new Scanner(System.in);
         ArrayList<Players> listOfPlayers = new ArrayList<>();
-        int Option;
-        System.out.print("""
+
+
+
+        while (true) {
+            System.out.print("""
                 Press:
                  1. To add player
                  2. To remove player
@@ -18,21 +21,18 @@ public class mainPlayers {
                  4. To list all players based on the amount of goals they have scored
                  5. To exit program
                  Enter value:""");
-        Option = switchCase.nextInt();
-        boolean keepAsking = !false;
-        while (keepAsking) {
-        switch (Option) {
+           int Option = sc.nextInt();
 
-                case 1:
+                if (Option == 1) {
 
                     System.out.println("Enter name of Player: ");
-                    String name = sc.nextLine();
+                    String name = sc.next();
 
                     System.out.println("Enter name of Team: ");
-                    String team = sc.nextLine();
+                    String team = sc.next();
 
                     System.out.print("Enter the players position: ");
-                    String position = sc.nextLine();
+                    String position = sc.next();
 
                     System.out.print("Enter amount of goals scored by the player: ");
                     int scoredGoals = sc.nextInt();
@@ -40,31 +40,26 @@ public class mainPlayers {
                     System.out.print("Enter the amount of titles won by the player: ");
                     int titlesWon = sc.nextInt();
 
-                    listOfPlayers.add(new Players(name, team, position, scoredGoals, titlesWon));
-                    break;
-
-                case 2:
-
-                    System.out.print("Enter the name of the player you want to remove");
-                    String removeName = sc.nextLine();
-                    int num = -1;
-                    for (int i = 0; i < listOfPlayers.size(); i++) {
-                        if (listOfPlayers.get(i).getName().equals(removeName)) {
-                            num = i;
+                    Players p1 = new Players(name, team, position, scoredGoals, titlesWon);
+                    listOfPlayers.add(p1);
+                }
+                else if (Option == 2) {
+                    System.out.print("Enter the name of the player you want to remove: ");
+                    String removeName = sc.next();
+                    Iterator<Players> iterator = listOfPlayers.iterator();
+                    while (iterator.hasNext()) {
+                        Players player = iterator.next();
+                        if (player.getName().equals(removeName)) {
+                            iterator.remove();
+                            System.out.println("Player removed successfully.");
                             break;
                         }
                     }
-                    if (num >= 0) {
-                        listOfPlayers.remove(num);
-                        System.out.println("Player removed!");
-                    } else {
-                        System.out.println("Player not found!");
-                    }
+                }
 
-
-                case 3:
+        else if (Option == 3) {
                     System.out.print("Enter player's name: ");
-                    String searchName = sc.nextLine();
+                    String searchName = sc.next();
                     int index = -1;
                     for (int i = 0; i < listOfPlayers.size(); i++) {
                         if (listOfPlayers.get(i).getName().equals(searchName)) {
@@ -83,9 +78,9 @@ public class mainPlayers {
                     } else {
                         System.out.println("Player not found!");
                     }
+                }
 
-
-                case 4:
+                else if (Option == 4) {
                     listOfPlayers.sort((p1, p2) -> p2.getScoredGoals() - p1.getScoredGoals());
                     for (Players player : listOfPlayers) {
                         System.out.println("Name: " + player.getName());
@@ -95,10 +90,13 @@ public class mainPlayers {
                         System.out.println("Titles won: " + player.getTitlesWon());
                         System.out.println();
                     }
+                }
 
-                case 5:
+                else if (Option == 5) {
                     break;
-            }
+                }
+
         }
     }
 }
+

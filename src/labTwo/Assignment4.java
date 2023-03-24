@@ -8,7 +8,8 @@ public class Assignment4 {
         String str1 = "Yes";
         String check;
         String CourseCode;
-        HashMap<String, String> Courses = new HashMap<String, String>();
+
+        HashMap<String, String> Courses = new HashMap<>();
 
         Courses.put("1IK161", "Fundamentals of programming");
         Courses.put("1IK162", "object oriented programming and Data structure");
@@ -19,13 +20,13 @@ public class Assignment4 {
             System.out.print("Enter a course code: ");
             CourseCode = input.nextLine();
 
-            if (CourseCode == Courses.get(CourseCode)) {
+            if (Courses.containsKey(CourseCode)) {
                 System.out.println("The course name for " + CourseCode + " is " + Courses.get(CourseCode));
             }
             else {
                 System.out.println("Course not found");
             }
-            System.out.println("Continue?");
+            System.out.print("Type yes to continue: ");
             check = input.nextLine();
         } while (check.equalsIgnoreCase(str1));
 

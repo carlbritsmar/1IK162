@@ -18,22 +18,18 @@ import java.util.Stack;
             }
             System.out.println(readNumbers);
         }
-        static void iterateNumbers(Stack<Integer> readNumbers){
+        static void printNumbers(Stack<Integer> readNumbers){
             while(!readNumbers.isEmpty()){
 
                 System.out.print(readNumbers.pop()+ " ");
             }
-
-
         }
 
         public static void main(String[] args) {
 
             Stack<Integer> readNumbers = new Stack<>();
             pushNumbers(readNumbers);
-            iterateNumbers(readNumbers);
-
-
+            printNumbers(readNumbers);
         }
     }
 
